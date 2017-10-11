@@ -1,14 +1,15 @@
 package cryptoassignment1;
 
 /**
- *
- * @author Michael
+ * Michael Alsbergas, 8207383
+ * Fundamentals of cryptography assignment 1
+ * 
+ * GUI for users to activate encryption functions
  */
+
 public class CryptoGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CryptoGUI
-     */
+     //Creates new form CryptoGUI
     public CryptoGUI() {
         initComponents();
     }
@@ -144,19 +145,24 @@ public class CryptoGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Exit button
     private void btn_EXITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EXITActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btn_EXITActionPerformed
 
+    //Activate chosen function button
     private void btn_ActivateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ActivateActionPerformed
-        //Activate code based on active radiobutton
         String input = this.txt_Input.getText(); //read from Input box
         String key = this.txt_Key.getText(); //read from Key box
+        this.txta_Output.insert(" \n", 0);
         
+        //Activate code based on active radiobutton
         if (this.rbn_Shift.isSelected()){
-            int num_key = Integer.parseInt(key);
-            CryptoAssignment1.Shift(input.toCharArray(),num_key);
+            try{ //Makes sure only integers entered into key
+                int num_key = Integer.parseInt(key);
+                CryptoAssignment1.Shift(input.toCharArray(),num_key);
+            }
+            catch(NumberFormatException e){}
         }
         else if (this.rbn_Vigenere.isSelected()){
             CryptoAssignment1.Vigenere(input.toCharArray(),key.toCharArray());
@@ -167,13 +173,7 @@ public class CryptoGUI extends javax.swing.JFrame {
         else if (this.rbn_Brute.isSelected()){
             CryptoAssignment1.Brute(input.toCharArray());
         }
-        
     }//GEN-LAST:event_btn_ActivateActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Activate;
